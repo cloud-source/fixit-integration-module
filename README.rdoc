@@ -1,0 +1,4 @@
+= SampleIntegration
+
+= license
+Copyright 2016 Cloudsource Limited.
