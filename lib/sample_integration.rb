@@ -46,8 +46,8 @@ module SampleIntegration
   end
 
   def self.channel_settings(channel)
-    # returning settings for account
-    (@@settings || {})[account.id]
+    # returning settings for channel
+    settings[channel.id] || {}
   end
 
   def self.channel_settings_form(channel)
