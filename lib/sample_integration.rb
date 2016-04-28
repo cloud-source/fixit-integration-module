@@ -35,7 +35,6 @@ module SampleIntegration
         }
       },
     ]
-    end
   end
 
   def self.create_integrated_report(report, integrated_params)
