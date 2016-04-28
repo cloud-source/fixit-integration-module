@@ -46,5 +46,5 @@ initializer to be included in the main app
 SampleIntegration.integrated_report_is_to_be_shown = Rails.env.production?
 ```
 
-## license
-Copyright 2016 Cloudsource Limited.
+## Copyright and license
+Code and documentation Copyright 2016 Cloudsource LTD. Code released under the MIT license.
