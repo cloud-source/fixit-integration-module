@@ -59,15 +59,15 @@ Integrations.subscribe(:report_created_async) do |report|
   SampleIntegration.notify_report_creation(report)
 end
 
-Integration.register(:configuration_data) do |channel|
+Integrations.register(:configuration_data, :sample_integration) do |channel|
   SampleIntegration.channel_settings(channel)
 end
 
-Integration.register(:configuration_form) do |channel|
+Integrations.register(:configuration_form, :sample_integration) do |channel|
   SampleIntegration.channel_settings_form(channel)
 end
 
-Integration.register(:configuration_form) do |channel|
+Integrations.register(:configuration_form, :sample_integration) do |channel|
   SampleIntegration.channel_settings_form(channel)
 end
 
