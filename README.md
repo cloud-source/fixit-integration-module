@@ -27,7 +27,7 @@ avalilable to make use of the data provided on such form fields.
 
 ### Channel Integrations
 A report object is provided with all available information to every integration point in the list below.
-* `:report_form_created_sync`: Event triggered on creation of a report. * A failure here can
+* `:report_form_created_sync`: Event triggered on creation of a report. The date provided in the integrated form will be available under `report.integrated_forms[integration_name]` hash.
 * `:report_form_created_async`: Event triggered asynchronously after a report creation.
 * `:report_form`: Callback used to build integrated form fields to be presented with report form.
 * `:report_data`: Callback used to retrieve data from integration to be displayed with a report.
@@ -36,7 +36,44 @@ A report object is provided with all available information to every integration 
 A channel object is provided with all available information to every integration point in the list below.
 * `:configuration_form`: Callback used to build configuration form to be presented to the user when he is configuring details for the integration.
 * `:configuration_data`: Callback used to retrieve configuration for current integration.
-* `:configuration_data_updated`: Event triggered when user updates its settings on integration configuration. Besides the channel object, a `updated_settings` hash is provided with this event as well to be stored and/or used as required.
+* `:configuration_data_updated`: Event triggered when user updates its settings on integration configuration. Besides the channel object, a `updated_settings` hash is provided with this event to be stored and/or used as required.
 
+## Initializer example:
+```
+# enabling presentation of integrated data
+SampleIntegration.integrated_report_is_to_be_shown = true
+
+Integrations.register(:report_data, "Sample Report Data") do |report|
+  SampleIntegration.integrated_report_data(report)
+end
+
+Integrations.register(:report_form, :sample_integration) do |report|
+  SampleIntegration.integrated_report_form(report)
+end
+
+Integrations.subscribe(:report_created_sync) do |report|
+  SampleIntegration.create_integrated_report(report, report.integrated_forms[:sample_integration])
+end
+
+Integrations.subscribe(:report_created_async) do |report|
+  SampleIntegration.notify_report_creation(report)
+end
+
+Integration.register(:configuration_data) do |channel|
+  SampleIntegration.channel_settings(channel)
+end
+
+Integration.register(:configuration_form) do |channel|
+  SampleIntegration.channel_settings_form(channel)
+end
+
+Integration.register(:configuration_form) do |channel|
+  SampleIntegration.channel_settings_form(channel)
+end
+
+Integrations.subscribe(:configuration_data_updated) do |channel, configuration_params|
+  SampleIntegration.update_channel_settings(channel, configuration_params)
+end
+```
 ## license
 Copyright 2016 Cloudsource Limited.
