@@ -55,10 +55,11 @@ module SampleIntegration
     # like integration credentials
     [
       {
-        name: "username",
+        name: "account",
       },
       {
-        name: "password",
+        name: "credentials",
+        as: :password,
       },
       {
         name: "enabled",
