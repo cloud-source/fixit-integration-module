@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.homepage    = "http://thundermaps.com"
   s.summary     = "Sample Integration for ThunderMaps"
   s.description = "Sample Integration to share data from/with Thundermaps."
+  s.licenses    = ['MIT']
 
   s.files = Dir["{app,config,db,lib}/**/*", "COPYRIGHT", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
