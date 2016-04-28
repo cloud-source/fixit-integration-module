@@ -5,10 +5,16 @@ module SampleIntegration
   mattr_accessor :integrated_report_is_to_be_shown
   @@integrated_report_is_to_be_shown = false
 
+  mattr_accessor :reports
+  @@reports = {}
+
+  mattr_accessor :settings
+  @@settings = {}
+
   def self.integrated_report_data(report)
     # returning integrated data to be shown with a thundermaps report
-    if integrated_report_is_to_be_shown && (@@reports || {}).fetch(report.id, false)
-      @@reports[report.id]
+    if integrated_report_is_to_be_shown && reports.fetch(report.id, false)
+      reports[report.id]
     end
   end
 
@@ -37,8 +43,7 @@ module SampleIntegration
   end
 
   def self.create_integrated_report(report, integrated_params)
-    @@reports ||= {}
-    @@reports[report.id] = integrated_params
+    reports[report.id] = integrated_params
   end
 
   def self.notify_report_creation(report)
@@ -70,7 +75,6 @@ module SampleIntegration
 
   def self.update_channel_settings(channel, settings)
     # updating settings for channel
-    @@settings ||= {}
-    @@settings[account.id] ||= settings
+    settings[channel.id] ||= settings
   end
 end
