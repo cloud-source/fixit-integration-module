@@ -1,7 +1,7 @@
 require "sample_integration/engine"
 
 module SampleIntegration
-  # configurations: accessible via initializer of the main app
+  # configurations: accessible via initializer in the main app
   mattr_accessor :integrated_report_is_to_be_shown
   @@integrated_report_is_to_be_shown = false
 
