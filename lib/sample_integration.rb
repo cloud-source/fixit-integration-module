@@ -73,8 +73,8 @@ module SampleIntegration
     ]
   end
 
-  def self.update_channel_settings(channel, settings)
+  def self.update_channel_settings(channel, channel_settings_params)
     # updating settings for channel
-    settings[channel.id] ||= settings
+    settings[channel.id] = channel_settings_params
   end
 end
