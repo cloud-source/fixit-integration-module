@@ -20,6 +20,10 @@ data.
 The application provide currently the following list of integration points but
 that list can be extended on request if considered reasonable by ThunderMaps
 Team.
+Is worth saying that all of these integration points are optional so you can
+implement only what is required for each case. But obviously, if you are providing
+a `*_form` callback you will want to subscribe to one of the respective events
+avalilable to make use of the data provided on such form fields.
 
 ### Channel Integrations
 A report object is provided with all available information to every integration point in the list below.
