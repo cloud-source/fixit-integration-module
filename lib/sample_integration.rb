@@ -15,7 +15,6 @@ module SampleIntegration
   def self.integrated_report_form(report)
     # returning integrated form fields definition.
     # you can use simple_form as reference for options available
-    integrated_report = SampleIntegration::Report.where(report_id: report.id).first_or_initialize
     [
       {
         name: "sample_field_1",
