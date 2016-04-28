@@ -1,24 +1,26 @@
 require "sample_integration/engine"
 
 module SampleIntegration
-  # configurations: accessible via initializer of the main app
+  # configurations: accessible via initializer in the main app
   mattr_accessor :integrated_report_is_to_be_shown
-  @@integrated_report_is_to_be_shown = true
+  @@integrated_report_is_to_be_shown = false
+
+  mattr_accessor :reports
+  @@reports = {}
+
+  mattr_accessor :settings
+  @@settings = {}
 
   def self.integrated_report_data(report)
     # returning integrated data to be shown with a thundermaps report
-    if integrated_report_is_to_be_shown
-      {
-        "SampleField1" => 1234,
-        "Samplefield2" => "sample field data to be displayed",
-      }
+    if integrated_report_is_to_be_shown && reports.fetch(report.id, false)
+      reports[report.id]
     end
   end
 
   def self.integrated_report_form(report)
     # returning integrated form fields definition.
     # you can use simple_form as reference for options available
-    integrated_report = SampleIntegration::Report.where(report_id: report.id).first_or_initialize
     [
       {
         name: "sample_field_1",
@@ -38,7 +40,19 @@ module SampleIntegration
         }
       },
     ]
-    end
+  end
+
+  def self.create_integrated_report(report, integrated_params)
+    reports[report.id] = integrated_params
+  end
+
+  def self.notify_report_creation(report)
+    Rails.logger.info "Report created: #{report.id}"
+  end
+
+  def self.channel_settings(channel)
+    # returning settings for channel
+    settings[channel.id] || {}
   end
 
   def self.channel_settings_form(channel)
@@ -46,10 +60,11 @@ module SampleIntegration
     # like integration credentials
     [
       {
-        name: "username",
+        name: "account",
       },
       {
-        name: "password",
+        name: "credentials",
+        as: :password,
       },
       {
         name: "enabled",
@@ -58,14 +73,8 @@ module SampleIntegration
     ]
   end
 
-  def self.channel_settings(channel)
-    # returning settings for account
-    @@settings[account.id]
-  end
-
-  def self.update_channel_settings(channel, settings)
+  def self.update_channel_settings(channel, channel_settings_params)
     # updating settings for channel
-    @@settings ||= {}
-    @@settings[account.id] ||= settings
+    settings[channel.id] = channel_settings_params
   end
 end
