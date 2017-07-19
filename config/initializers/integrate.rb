@@ -1,0 +1,27 @@
+Integrations.register(:report_data, "Sample Report Data") do |report|
+  SampleIntegration.integrated_report_data(report)
+end
+
+Integrations.register(:report_form, :sample_integration) do |report|
+  SampleIntegration.integrated_report_form(report)
+end
+
+Integrations.subscribe(:report_created_sync) do |report|
+  SampleIntegration.create_integrated_report(report, report.integrated_forms[:sample_integration])
+end
+
+Integrations.subscribe(:report_created_async) do |report|
+  SampleIntegration.notify_report_creation(report)
+end
+
+Integrations.register(:configuration_data, :sample_integration) do |channel|
+  SampleIntegration.channel_settings(channel)
+end
+
+Integrations.register(:configuration_form, :sample_integration) do |channel|
+  SampleIntegration.channel_settings_form(channel)
+end
+
+Integrations.subscribe([:configuration_data_updated, :sample_integration]) do |channel, configuration_params|
+  SampleIntegration.update_channel_settings(channel, configuration_params)
+end

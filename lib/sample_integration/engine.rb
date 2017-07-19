@@ -1,4 +1,4 @@
-module Samplentegration
+module SampleIntegration
   class Engine < ::Rails::Engine
     isolate_namespace SampleIntegration
   end
