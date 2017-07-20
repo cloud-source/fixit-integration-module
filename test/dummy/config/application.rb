@@ -13,6 +13,8 @@ require "sprockets/railtie"
 Bundler.require(*Rails.groups)
 require "sample_integration"
 
+require File.expand_path('../../lib/integrations.rb', __FILE__)
+
 module Dummy
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -20,4 +22,3 @@ module Dummy
     # -- all .rb files in that directory are automatically loaded.
   end
 end
-
