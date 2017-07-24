@@ -2,6 +2,21 @@
 # This is here just a alternative implementation to mimic Thundermaps Integration module.
 module Integrations
 
+  mattr_accessor :subscriptions
+  @@subscriptions = {}
+
+  mattr_accessor :repositories
+  @@repositories = {}
+
+  def self.subscribe(event, &action)
+    subscriptions[event] = (Array(subscriptions[event])) << action
+  end
+
+  def self.register(repository_id, entity_id, &block)
+    repository = repositories[repository_id] ||= {}
+    repository[entity_id] = block
+  end
+
   def self.create_channel(*args)
     @channels ||= []
     @last_channel_id ||= 0
