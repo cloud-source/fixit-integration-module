@@ -2,12 +2,14 @@ Integrations.register(:report_data, "Sample Report Data") do |report|
   SampleIntegration.integrated_report_data(report)
 end
 
-Integrations.register(:report_form, :sample_integration) do |report|
+integrated_form_name = :sample_integration
+Integrations.register(:report_form, integrated_form_name) do |report|
   SampleIntegration.integrated_report_form(report)
 end
 
 Integrations.subscribe(:report_created_sync) do |report|
-  SampleIntegration.create_integrated_report(report, report.integrated_forms[:sample_integration])
+  params = report.integrated_forms.try!(:[], integrated_form_name)
+  SampleIntegration.create_integrated_report(report, params)
 end
 
 Integrations.subscribe(:report_created_async) do |report|
