@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  channel_id: 1
+  geom: "POLYGON((174.55078125 -31.26446555575282,-177.890625 -39.6945074985609,169.62890625 -50.22260931189022,162.59765625 -45.51019654498557,174.55078125 -31.26446555575282))"
+  fault_description: MyText
+  branded_app_id: 1
+  service: one
+
+two:
+  channel_id: 1
+  geom: "POLYGON((174.55078125 -31.26446555575282,-177.890625 -39.6945074985609,169.62890625 -50.22260931189022,162.59765625 -45.51019654498557,174.55078125 -31.26446555575282))"
+  fault_description: MyText
+  branded_app_id: 1
+  service: two
