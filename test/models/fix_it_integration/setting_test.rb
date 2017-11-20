@@ -1,6 +1,6 @@
 require 'test_helper'
 
-module SampleIntegration
+module FixItIntegration
   class SettingTest < ActiveSupport::TestCase
 
     attr_accessor :channel_id
@@ -10,7 +10,7 @@ module SampleIntegration
       self.channel_id ||= 0
       self.channel_id += 1
 
-      SampleIntegration::Setting.new(channel_id: channel_id, geom: "POLYGON((174.55078125 -31.26446555575282,-177.890625 -39.6945074985609,169.62890625 -50.22260931189022,162.59765625 -45.51019654498557,174.55078125 -31.26446555575282))", 
+      FixItIntegration::Setting.new(channel_id: channel_id, geom: "POLYGON((174.55078125 -31.26446555575282,-177.890625 -39.6945074985609,169.62890625 -50.22260931189022,162.59765625 -45.51019654498557,174.55078125 -31.26446555575282))", 
         fault_description: "test", branded_app_id: 1, service: Service.first)
     end
 

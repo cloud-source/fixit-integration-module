@@ -1,4 +1,4 @@
-module SampleIntegration
+module FixItIntegration
   class Service < ApplicationRecord
     validates :url, presence: true  
     validates :auth, presence: true

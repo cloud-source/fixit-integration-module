@@ -1,17 +1,17 @@
 $:.push File.expand_path("../lib", __FILE__)
 
 # Maintain your gem's version:
-require "sample_integration/version"
+require "fix_it_integration/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "sample_integration"
-  s.version     = SampleIntegration::VERSION
-  s.authors     = ["Rafael Santos"]
-  s.email       = ["rafael@thundermaps.com"]
-  s.homepage    = "http://thundermaps.com"
-  s.summary     = "Sample Integration for ThunderMaps"
-  s.description = "Sample Integration to share data from/with Thundermaps."
+  s.name        = "fix_it_integration"
+  s.version     = FixItIntegration::VERSION
+  s.authors     = ["Chris Noldus"]
+  s.email       = ["chris@thundermaps.com"]
+  s.homepage    = "http:s//www.thundermaps.com"
+  s.summary     = "Fix It Integration for ThunderMaps"
+  s.description = "Fix it Integration to push data to FIX It Backend."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]

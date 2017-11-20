@@ -16,23 +16,23 @@ ActiveRecord::Schema.define(version: 20171011010816) do
   enable_extension "plpgsql"
   enable_extension "postgis"
 
-  create_table "sample_integration_services", force: :cascade do |t|
+  create_table "fix_it_integration_services", force: :cascade do |t|
     t.text     "url",        null: false
     t.text     "auth",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "sample_integration_settings", force: :cascade do |t|
+  create_table "fix_it_integration_settings", force: :cascade do |t|
     t.integer  "channel_id",                                                          null: false
     t.geometry "geom",                          limit: {:srid=>0, :type=>"geometry"}, null: false
     t.text     "fault_description",                                                   null: false
     t.integer  "branded_app_id",                                                      null: false
-    t.integer  "sample_integration_service_id"
+    t.integer  "fix_it_integration_service_id"
     t.datetime "created_at",                                                          null: false
     t.datetime "updated_at",                                                          null: false
-    t.index ["sample_integration_service_id"], name: "settings service", using: :btree
+    t.index ["fix_it_integration_service_id"], name: "settings service", using: :btree
   end
 
-  add_foreign_key "sample_integration_settings", "sample_integration_services"
+  add_foreign_key "fix_it_integration_settings", "fix_it_integration_services"
 end

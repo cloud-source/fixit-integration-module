@@ -11,7 +11,7 @@ require "rails/test_unit/railtie"
 require "sprockets/railtie"
 
 Bundler.require(*Rails.groups)
-require "sample_integration"
+require "fix_it_integration"
 
 require File.expand_path('../../lib/integrations.rb', __FILE__)
 
