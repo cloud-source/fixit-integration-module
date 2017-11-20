@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 5.0.2"
+  s.add_dependency 'httparty', '~> 0.14.0'
   s.add_development_dependency "pg"
   s.add_development_dependency "activerecord-postgis-adapter"
 end

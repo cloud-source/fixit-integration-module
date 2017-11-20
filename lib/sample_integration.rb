@@ -19,27 +19,7 @@ module SampleIntegration
   end
 
   def self.integrated_report_form(report)
-    # returning integrated form fields definition.
-    # you can use simple_form as reference for options available
-    [
-      {
-        name: "sample_field_1",
-        label: "Samplefield1",
-        collection: [
-          ['optionLabe1', 1],
-          ['optionLabel2', 2],
-        ],
-        selected: 2,
-      },
-      {
-        name: "sample_field_2",
-        label: "SampleField2",
-        placeholder: "type it here",
-        html_input: {
-          value: "preexising value",
-        }
-      },
-    ]
+    {}
   end
 
   def self.create_integrated_report(report, integrated_params)
@@ -48,6 +28,13 @@ module SampleIntegration
 
   def self.notify_report_creation(report)
     Rails.logger.info "Report created: #{report.id}"
+
+    #Check report belongs to relevant channel, and is inside a service area
+    Setting.where("ST_WITHIN(?, geom) AND channel_id = ?", report.location, report.account_id).each do |s|
+      s.send_report(report)
+    end
+
+
   end
 
   def self.channel_settings(channel)
@@ -56,21 +43,21 @@ module SampleIntegration
   end
 
   def self.channel_settings_form(channel)
-    # returning fields to appear in integration configuration page
-    # like integration credentials
-    [
-      {
-        name: "account",
-      },
-      {
-        name: "credentials",
-        as: :password,
-      },
-      {
-        name: "enabled",
-        as: :boolean,
-      },
-    ]
+    # # returning fields to appear in integration configuration page
+    # # like integration credentials
+    # [
+    #   {
+    #     name: "account",
+    #   },
+    #   {
+    #     name: "credentials",
+    #     as: :password,
+    #   },
+    #   {
+    #     name: "enabled",
+    #     as: :boolean,
+    #   },
+    # ]
   end
 
   def self.update_channel_settings(channel, channel_settings_params)
