@@ -44,7 +44,7 @@ module FixItIntegration
         result = HTTParty.post(service.url, body: payload.to_json, headers: headers) 
         logger.info("FixIt API Push Result Code: #{result.code}")
       else
-        logfer.info("Would have sent FixIt Paylod: #{payload.to_json}")
+        logger.info("Would have sent FixIt Paylod: #{payload.to_json}")
       end
     end
 
