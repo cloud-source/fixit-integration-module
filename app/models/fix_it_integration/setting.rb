@@ -35,7 +35,7 @@ module FixItIntegration
       }
       count = 1
       report.report_images.each do |ri| 
-        payload["fixitRequest"]["photo{count}"] = encode_image(ri)
+        payload["fixitRequest"]["photo#{count}"] = encode_image(ri)
         break if count > 3
         count = count +1
       end
