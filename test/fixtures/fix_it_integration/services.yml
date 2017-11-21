@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  url: MyText
+  auth: MyText
+  created_at: '2017-01-01'
+  updated_at: '2017-01-01'
+
+two:
+  url: MyText
+  auth: MyText
+  created_at: '2017-01-01'
+  updated_at: '2017-01-01'
