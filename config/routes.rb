@@ -1,2 +1,2 @@
-SampleIntegration::Engine.routes.draw do
+FixItIntegration::Engine.routes.draw do
 end
