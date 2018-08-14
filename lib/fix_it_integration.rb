@@ -15,7 +15,7 @@ module FixItIntegration
     Rails.logger.info "Report created: #{report.id}"
 
     #Check report belongs to relevant channel, and is inside a service area
-    Setting.where("ST_WITHIN(?, geom) AND channel_id = ?", report.location, report.account_id).each do |s|
+    Setting.where("ST_WITHIN(?, geom) AND channel_id = ?", report.geom, report.account_id).each do |s|
       s.send_report(report)
     end
   end
